@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://54sujvi3p024"]
+
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_j0gk2"]
+[ext_resource type="Texture2D" uid="uid://cgvrkoxsmdpk2" path="res://assets/images/backgrounds/background_dark.png" id="2_4e8pv"]
+[ext_resource type="PackedScene" uid="uid://cg8ocgn34qhup" path="res://scenes/tanks/default_tank.tscn" id="2_locjl"]
+[ext_resource type="PackedScene" uid="uid://dqf2imh5wxu18" path="res://scenes/entities/square.tscn" id="3_dc4ji"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_j0gk2")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(5000, -3920)
+texture = ExtResource("2_4e8pv")
+region_enabled = true
+region_rect = Rect2(-10000, -10000, 10000, 10000)
+
+[node name="Bullets" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_locjl")]
+position = Vector2(438, 557)
+scale = Vector2(0.3, 0.3)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Square" parent="Entities" instance=ExtResource("3_dc4ji")]
+position = Vector2(434, 437)
+
+[node name="Square2" parent="Entities" instance=ExtResource("3_dc4ji")]
+position = Vector2(686, 703)
+
+[node name="Square3" parent="Entities" instance=ExtResource("3_dc4ji")]
+position = Vector2(1057, 768)
+
+[node name="Square4" parent="Entities" instance=ExtResource("3_dc4ji")]
+position = Vector2(1036, 451)
+
+[connection signal="shoot_bullet" from="Player" to="." method="_on_player_shoot_bullet"]

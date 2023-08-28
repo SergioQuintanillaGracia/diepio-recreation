@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct3w1ccl2bl0h"]
+
+[ext_resource type="Script" path="res://scenes/bullets/bullet_normal.gd" id="1_n26rk"]
+[ext_resource type="Texture2D" uid="uid://bc8bnhiu0bawy" path="res://assets/images/bullets/blue_bullet_normal.png" id="1_rsjkl"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mmiai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nstho"]
+radius = 15.0
+
+[node name="BulletNormal" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_mmiai")
+gravity_scale = 0.0
+linear_damp = 1.0
+script = ExtResource("1_n26rk")
+life_time_sec = 1.75
+smooth_death_time_sec = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nstho")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("1_rsjkl")
+
+[node name="LifeTimer" type="Timer" parent="."]
+
+[node name="SmoothDeathTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="timeout" from="SmoothDeathTimer" to="." method="_on_smooth_death_timer_timeout"]
