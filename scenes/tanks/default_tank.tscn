@@ -8,7 +8,7 @@
 radius = 129.062
 
 [node name="DefaultTank" type="CharacterBody2D"]
-collision_mask = 7
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_s8hku")
 bullet_speed = 1000

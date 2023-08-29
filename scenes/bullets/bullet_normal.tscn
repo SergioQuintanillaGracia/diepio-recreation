@@ -5,8 +5,8 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mmiai"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nstho"]
-radius = 15.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_extiw"]
+radius = 15.5
 
 [node name="BulletNormal" type="RigidBody2D"]
 collision_layer = 2
@@ -18,8 +18,10 @@ script = ExtResource("1_n26rk")
 life_time_sec = 1.75
 smooth_death_time_sec = 0.2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_nstho")
+[node name="Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+shape = SubResource("CircleShape2D_extiw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.12, 0.12)

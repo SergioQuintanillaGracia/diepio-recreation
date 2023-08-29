@@ -27,10 +27,8 @@ func _process(delta):
 		# Get the direction and random angle to shoot the bullet
 		var random_choosen_angle = randf_range(-random_bullet_angle, random_bullet_angle)
 		var shoot_angle: float = rad_to_deg((get_global_mouse_position() - position).angle()) + random_choosen_angle
-		print(shoot_angle)
 		
 		var shoot_direction: Vector2 = Vector2(cos(deg_to_rad(shoot_angle)), sin(deg_to_rad(shoot_angle)))
-		print(shoot_direction)
 		var pos = $BulletMarkers/Marker1.global_position
 		var bullet_speed_vector = shoot_direction * bullet_speed
 		

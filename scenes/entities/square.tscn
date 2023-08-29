@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqf2imh5wxu18"]
+[gd_scene load_steps=5 format=3 uid="uid://dqf2imh5wxu18"]
 
 [ext_resource type="Texture2D" uid="uid://hcsk14lgw470" path="res://assets/images/entities/square.png" id="1_g5m44"]
 [ext_resource type="Script" path="res://scenes/entities/square.gd" id="1_n04ov"]
@@ -6,11 +6,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_py1bg"]
 size = Vector2(128, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ayng"]
+size = Vector2(51, 51)
+
 [node name="Square" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 4
 gravity_scale = 0.0
 script = ExtResource("1_n04ov")
+life = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.4, 0.4)
@@ -20,3 +24,12 @@ shape = SubResource("RectangleShape2D_py1bg")
 texture_filter = 1
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_g5m44")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_5ayng")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
