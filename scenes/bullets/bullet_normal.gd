@@ -3,6 +3,9 @@ extends RigidBody2D
 @export var life_time_sec: float = 3
 @export var smooth_death_time_sec: float = 0.5
 
+# When a player shoots the bullet, the shooter variable will be set to the player node
+var shooter: CharacterBody2D
+
 func _ready():
 	$LifeTimer.wait_time = life_time_sec
 	$LifeTimer.start()

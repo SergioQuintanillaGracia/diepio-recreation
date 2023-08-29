@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal shoot_bullet(pos, speed)
 
+@export var player_name: String
 @export var speed: int = 500
 @export var random_bullet_angle: float = 5
 

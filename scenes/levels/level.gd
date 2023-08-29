@@ -27,6 +27,14 @@ func _process(delta):
 	if time_since_last_entity >= time_between_entity_spawns_sec and entity_count < entity_limit:
 		spawn_random_shape()
 		time_since_last_entity = 0
+	
+	var current_camera_zoom: Vector2 = $Player/Camera2D.zoom
+	
+	if Input.is_action_just_pressed("zoom"):
+		$Player/Camera2D.zoom += current_camera_zoom * 0.1
+		
+	if Input.is_action_just_pressed("unzoom"):
+		$Player/Camera2D.zoom -= current_camera_zoom * 0.1
 
 
 func _on_player_shoot_bullet(pos, speed):

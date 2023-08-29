@@ -5,11 +5,11 @@ extends RigidBody2D
 @export var movement_speed: float = 2
 @export var rotation_speed: float = 0.15
 
-@export var smooth_spawn_time_sec: float = 0.1
+@export var smooth_spawn_time_sec: float = 0.12
 var smooth_spawn_time_sec_current: float = 0
 var smooth_spawn_complete: bool = false
 
-@export var smooth_death_time_sec: float = 0.1
+@export var smooth_death_time_sec: float = 0.12
 var smooth_death_time_sec_left: float = smooth_death_time_sec
 var should_die: bool = false
 
