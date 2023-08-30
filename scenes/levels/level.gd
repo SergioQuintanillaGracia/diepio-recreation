@@ -37,9 +37,10 @@ func _process(delta):
 		$Player/Camera2D.zoom -= current_camera_zoom * 0.1
 
 
-func _on_player_shoot_bullet(pos, speed):
+func _on_player_shoot_bullet(pos, speed, damage):
 	# Create a bullet, give it a position and a speed, and add it to the Bullets node
 	var bullet = bullet_normal_scene.instantiate() as RigidBody2D
+	bullet.damage = damage
 	bullet.position = pos
 	bullet.linear_velocity = speed
 	$Bullets.add_child(bullet)
@@ -71,14 +72,5 @@ func spawn_shape(shape_scene: PackedScene, pos: Vector2) -> void:
 	$Entities.add_child(shape)
 
 
-
-
-
-
-
-
-
-
-
-
-
+func _on_skill_upgrade_menu_upgrade_damage():
+	pass # Replace with function body.

@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxxqcf7217w5c"]
+
+[ext_resource type="PackedScene" uid="uid://bgi1biyxae5se" path="res://scenes/guis/bars/skill_upgrade_bars/damage_upgrade_bar.tscn" id="1_aubha"]
+[ext_resource type="Script" path="res://scenes/guis/menus/skill_upgrade_menu.gd" id="1_kt8br"]
+[ext_resource type="PackedScene" uid="uid://bgvo1p6cxw5vy" path="res://scenes/guis/bars/skill_upgrade_bars/bullet_speed_upgrade_bar.tscn" id="2_krs1y"]
+[ext_resource type="PackedScene" uid="uid://vyr4kyt2ebvn" path="res://scenes/guis/bars/skill_upgrade_bars/reload_upgrade_bar.tscn" id="3_y7rae"]
+
+[node name="skill_upgrade_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kt8br")
+
+[node name="DamageUpgradeBar" parent="." instance=ExtResource("1_aubha")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 392.0
+offset_bottom = 24.0
+
+[node name="BulletSpeedUpgradeBar" parent="." instance=ExtResource("2_krs1y")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 24.0
+offset_top = 72.0
+offset_right = 392.0
+offset_bottom = 72.0
+
+[node name="ReloadUpgradeBar" parent="." instance=ExtResource("3_y7rae")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 24.0
+offset_top = 120.0
+offset_right = 392.0
+offset_bottom = 120.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="upgrade_skill_button_pressed" from="DamageUpgradeBar" to="." method="_on_damage_upgrade_bar_upgrade_skill_button_pressed"]
+[connection signal="upgrade_skill_button_pressed" from="BulletSpeedUpgradeBar" to="." method="_on_bullet_speed_upgrade_bar_upgrade_skill_button_pressed"]
+[connection signal="upgrade_skill_button_pressed" from="ReloadUpgradeBar" to="." method="_on_reload_upgrade_bar_upgrade_skill_button_pressed"]

@@ -1,6 +1,7 @@
 extends RigidBody2D
 
-@export var damage: float
+# The damage should be set just after instantiating the scene
+var damage: float
 
 var life_time_sec: float
 var smooth_death_time_sec: float

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgi1biyxae5se"]
+
+[ext_resource type="PackedScene" uid="uid://dw57awscnbm0j" path="res://scenes/guis/bars/skill_upgrade_bars/skill_upgrade_bar.tscn" id="1_507mn"]
+
+[node name="DamageUpgradeBar" instance=ExtResource("1_507mn")]
+
+[node name="TextureProgressBar" parent="." index="0"]
+tint_progress = Color(0.980392, 0, 0.0705882, 1)
+
+[node name="Label" parent="." index="2"]
+text = "Damage"

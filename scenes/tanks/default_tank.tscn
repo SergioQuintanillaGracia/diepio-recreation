@@ -13,7 +13,9 @@ motion_mode = 1
 script = ExtResource("1_s8hku")
 player_name = "TestPlayerName"
 speed = 400
-bullet_speed = 1000
+default_bullet_damage = 1.0
+default_bullet_speed = 700.0
+default_reload_time = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gffi3")
@@ -33,7 +35,6 @@ texture = ExtResource("1_p7vlr")
 texture = ExtResource("2_1b0eq")
 
 [node name="CanBulletTimer" type="Timer" parent="."]
-wait_time = 0.2
 one_shot = true
 
 [connection signal="timeout" from="CanBulletTimer" to="." method="_on_can_bullet_timer_timeout"]
