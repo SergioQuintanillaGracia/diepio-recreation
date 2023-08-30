@@ -15,8 +15,6 @@ physics_material_override = SubResource("PhysicsMaterial_mmiai")
 gravity_scale = 0.0
 linear_damp = 1.0
 script = ExtResource("1_n26rk")
-life_time_sec = 1.75
-smooth_death_time_sec = 0.2
 
 [node name="Area" type="Area2D" parent="."]
 
@@ -30,6 +28,7 @@ texture = ExtResource("1_rsjkl")
 [node name="LifeTimer" type="Timer" parent="."]
 
 [node name="SmoothDeathTimer" type="Timer" parent="."]
+wait_time = 0.2
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
 [connection signal="timeout" from="SmoothDeathTimer" to="." method="_on_smooth_death_timer_timeout"]

@@ -10,6 +10,7 @@ signal shoot_bullet(pos, speed)
 @export var bullet_speed: int = 700
 
 var can_shoot_bullet: bool = true
+var is_autofire_enabled: bool = false
 
 
 func _process(delta):
@@ -23,7 +24,7 @@ func _process(delta):
 	move_and_slide()
 	
 	
-	if Input.is_action_pressed("primary") and can_shoot_bullet:
+	if (Input.is_action_pressed("primary") or is_autofire_enabled) and can_shoot_bullet:
 		# Send a signal with information about where to create the bullet, so it can be created inside level
 		# Get the direction and random angle to shoot the bullet
 		var random_choosen_angle = randf_range(-random_bullet_angle, random_bullet_angle)
@@ -38,6 +39,9 @@ func _process(delta):
 		# Start the CanBulletTimer, when it goes off the player will be able to shoot again
 		can_shoot_bullet = false
 		$CanBulletTimer.start()
+		
+	if (Input.is_action_just_pressed("autofire")):
+		is_autofire_enabled = false if is_autofire_enabled else true
 
 
 func _on_can_bullet_timer_timeout():

@@ -1,6 +1,7 @@
 extends RigidBody2D
 
-@export var life: int
+@export var max_life: int
+var life: int
 
 @export var movement_speed: float = 2
 @export var rotation_speed: float = 0.15
@@ -22,11 +23,21 @@ var time_until_movement_change_left: float = 0
 var movement_direction: Vector2
 var rotation_direction: float
 
+var life_bar_scene: PackedScene = preload("res://scenes/guis/bars/life_bar.tscn")
+var life_bar: Node2D
+var life_bar_position_offset: Vector2
+
 func _ready():
 	modulate.a = 0
+	life = max_life
+	life_bar_position_offset = $LifeBar.position
 
 
 func _process(delta):
+	# Update the life_bar so it always stays where it should be
+	$LifeBar.global_rotation = 0
+	$LifeBar.global_position = global_position + life_bar_position_offset
+	
 	if not smooth_spawn_complete:
 		smooth_spawn_time_sec_current += delta
 		modulate.a = smooth_spawn_time_sec_current / smooth_spawn_time_sec
@@ -52,6 +63,10 @@ func _process(delta):
 	angular_velocity = rotation_direction * rotation_speed
 
 
+func set_life_bar(bar: Node2D):
+	life_bar = bar
+
+
 func reset_random_movement():
 	# Choose a random direction and rotation for the shape to move
 	movement_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1))
@@ -59,9 +74,20 @@ func reset_random_movement():
 
 
 func handle_collision(area: Area2D):
-	area.get_parent().queue_free()
+	var damage: int = 1
+	life -= damage
 	
-	life -= 1
+	if not should_die:
+		area.get_parent().smooth_death()
+		area.get_parent().linear_damp = 30
 	
 	if life <= 0:
 		should_die = true
+	
+	if not should_die:
+		$LifeBar.set_value($LifeBar.get_value() - 100 / max_life)
+
+
+func _on_area_2d_area_entered(area):
+	# A bullet / player has collided with the Area2D
+	handle_collision(area)

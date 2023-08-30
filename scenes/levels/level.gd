@@ -2,8 +2,8 @@ extends Node2D
 
 var bullet_normal_scene: PackedScene = preload("res://scenes/bullets/bullet_normal.tscn")
 var square_scene: PackedScene = preload("res://scenes/entities/square.tscn")
-var triangle_scene: PackedScene = preload("res://scenes/entities/triangle.tscn")
-var pentagon_scene: PackedScene = preload("res://scenes/entities/pentagon.tscn")
+#var triangle_scene: PackedScene = preload("res://scenes/entities/triangle.tscn")
+#var pentagon_scene: PackedScene = preload("res://scenes/entities/pentagon.tscn")
 
 @export var time_between_entity_spawns_sec: float
 @export var entity_limit: int
@@ -55,12 +55,14 @@ func get_random_pos() -> Vector2:
 func spawn_random_shape() -> void:
 	var random_value: float = randf_range(0, 1)
 	
-	if random_value < square_chance:
-		spawn_shape(square_scene, get_random_pos())
-	elif random_value < square_chance + triangle_chance:
-		spawn_shape(triangle_scene, get_random_pos())
-	else:
-		spawn_shape(pentagon_scene, get_random_pos())
+#	if random_value < square_chance:
+#		spawn_shape(square_scene, get_random_pos())
+#	elif random_value < square_chance + triangle_chance:
+#		spawn_shape(triangle_scene, get_random_pos())
+#	else:
+#		spawn_shape(pentagon_scene, get_random_pos())
+
+	spawn_shape(square_scene, get_random_pos())
 		
 
 func spawn_shape(shape_scene: PackedScene, pos: Vector2) -> void:

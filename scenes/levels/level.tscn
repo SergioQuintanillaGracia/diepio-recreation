@@ -1,23 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://54sujvi3p024"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_j0gk2"]
+[ext_resource type="Texture2D" uid="uid://l6pe0ip3mpxi" path="res://assets/images/backgrounds/background.png" id="2_enil6"]
 [ext_resource type="PackedScene" uid="uid://cg8ocgn34qhup" path="res://scenes/tanks/default_tank.tscn" id="2_locjl"]
-[ext_resource type="Texture2D" uid="uid://cgvrkoxsmdpk2" path="res://assets/images/backgrounds/background_dark.png" id="2_sfmvi"]
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("spawn_limit_1", "spawn_limit_2")]
 script = ExtResource("1_j0gk2")
 entity_limit = 200
-square_chance = 0.75
-triangle_chance = 0.22
-pentagon_chance = 0.03
+square_chance = 1.0
 spawn_limit_1 = NodePath("EntitySpawnLimits/Limit1")
 spawn_limit_2 = NodePath("EntitySpawnLimits/Limit2")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 4
 texture_repeat = 2
-position = Vector2(5000, -3920)
-texture = ExtResource("2_sfmvi")
+position = Vector2(438, 557)
+texture = ExtResource("2_enil6")
 region_enabled = true
 region_rect = Rect2(-10000, -10000, 10000, 10000)
 
