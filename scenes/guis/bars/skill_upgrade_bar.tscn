@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw57awscnbm0j"]
+
+[ext_resource type="Texture2D" uid="uid://djcxie222w7aa" path="res://assets/images/bars/upgrade_skill_bar/bg.png" id="1_0sp5u"]
+[ext_resource type="Texture2D" uid="uid://btlhqqvr0anfm" path="res://assets/images/bars/upgrade_skill_bar/fill.png" id="2_jbgrs"]
+
+[node name="SkillUpgradeBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(280, 30)
+layout_mode = 2
+offset_right = 280.0
+offset_bottom = 48.0
+step = 12.5
+value = 37.5
+nine_patch_stretch = true
+texture_under = ExtResource("1_0sp5u")
+texture_progress = ExtResource("2_jbgrs")
+tint_progress = Color(0.878431, 0, 0.0588235, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_right = 376.0
+offset_bottom = 48.0
+text = "UPGRADE"

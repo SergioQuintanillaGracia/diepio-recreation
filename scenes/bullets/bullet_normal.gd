@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+@export var damage: float
+
 var life_time_sec: float
 var smooth_death_time_sec: float
 
@@ -21,7 +23,13 @@ func _process(_delta):
 
 func smooth_death():
 	if $SmoothDeathTimer.is_stopped():
+		damage = 0
 		$SmoothDeathTimer.start()
+		
+
+func smooth_death_collision():
+	linear_damp = 30
+	smooth_death()
 
 
 func _on_life_timer_timeout():

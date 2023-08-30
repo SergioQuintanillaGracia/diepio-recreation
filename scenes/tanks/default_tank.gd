@@ -13,7 +13,7 @@ var can_shoot_bullet: bool = true
 var is_autofire_enabled: bool = false
 
 
-func _process(delta):
+func _process(_delta):
 	# Movement and rotation
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * speed

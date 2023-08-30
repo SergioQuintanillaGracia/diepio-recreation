@@ -1,27 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6f2ya7ohccid"]
+[gd_scene load_steps=3 format=3 uid="uid://d1nstpgkfffh0"]
 
 [ext_resource type="Texture2D" uid="uid://f16st6y8uk5t" path="res://assets/images/entities/triangle.png" id="1_2cpk7"]
-[ext_resource type="Script" path="res://scenes/entities/triangle.gd" id="1_8d0ug"]
+[ext_resource type="PackedScene" uid="uid://cpu76iav71en7" path="res://scenes/entities/generic_entity.tscn" id="1_2ptlw"]
 
-[node name="Triangle" type="RigidBody2D"]
-collision_layer = 4
-collision_mask = 4
-gravity_scale = 0.0
-script = ExtResource("1_8d0ug")
+[node name="Triangle" instance=ExtResource("1_2ptlw")]
+life = 5.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" parent="." index="0"]
 polygon = PackedVector2Array(0, -30, -31, 24, 31, 24)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
+[node name="Sprite2D" parent="." index="1"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_2cpk7")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 3
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionPolygon2D" parent="Area2D" index="0"]
 polygon = PackedVector2Array(0, -30, -31, 24, 31, 24)
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

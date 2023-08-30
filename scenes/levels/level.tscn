@@ -7,7 +7,9 @@
 [node name="Level" type="Node2D" node_paths=PackedStringArray("spawn_limit_1", "spawn_limit_2")]
 script = ExtResource("1_j0gk2")
 entity_limit = 200
-square_chance = 1.0
+square_chance = 0.75
+triangle_chance = 0.22
+pentagon_chance = 0.03
 spawn_limit_1 = NodePath("EntitySpawnLimits/Limit1")
 spawn_limit_2 = NodePath("EntitySpawnLimits/Limit2")
 
@@ -22,10 +24,10 @@ region_rect = Rect2(-10000, -10000, 10000, 10000)
 [node name="EntitySpawnLimits" type="Node2D" parent="."]
 
 [node name="Limit1" type="Marker2D" parent="EntitySpawnLimits"]
-position = Vector2(76, 1010)
+position = Vector2(-1715, 2249)
 
 [node name="Limit2" type="Marker2D" parent="EntitySpawnLimits"]
-position = Vector2(6113, -3079)
+position = Vector2(2708, -1201)
 
 [node name="Entities" type="Node2D" parent="."]
 

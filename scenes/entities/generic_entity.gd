@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-@export var max_life: int
-var life: int
+@export var life: float
+var remaining_life: float
 
 @export var movement_speed: float = 2
 @export var rotation_speed: float = 0.15
@@ -29,8 +29,9 @@ var life_bar_position_offset: Vector2
 
 func _ready():
 	modulate.a = 0
-	life = max_life
+	remaining_life = life
 	life_bar_position_offset = $LifeBar.position
+	$LifeBar.modulate.a = 0
 
 
 func _process(delta):
@@ -74,18 +75,21 @@ func reset_random_movement():
 
 
 func handle_collision(area: Area2D):
-	var damage: int = 1
-	life -= damage
+	var damage: float = area.get_parent().damage
+	remaining_life -= damage
+	
+	if damage != 0:
+		$LifeBar.modulate.a = 1
 	
 	if not should_die:
-		area.get_parent().smooth_death()
-		area.get_parent().linear_damp = 30
+		area.get_parent().smooth_death_collision()
 	
-	if life <= 0:
+	if remaining_life <= 0:
 		should_die = true
 	
 	if not should_die:
-		$LifeBar.set_value($LifeBar.get_value() - 100 / max_life)
+		var new_life_value: float = $LifeBar.get_value() - 100 / life * damage
+		$LifeBar.set_value(new_life_value)
 
 
 func _on_area_2d_area_entered(area):
