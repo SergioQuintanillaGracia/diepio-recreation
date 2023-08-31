@@ -20,13 +20,18 @@ var pentagon_scene: PackedScene = preload("res://scenes/entities/pentagon.tscn")
 @export var zoom_limit: float = 1.5
 @export var unzoom_limit: float = 0.5
 
-var zoom_limit_vector: Vector2 = Vector2(zoom_limit, zoom_limit)
-var unzoom_limit_vector: Vector2 = Vector2(unzoom_limit, unzoom_limit)
+var zoom_limit_vector: Vector2
+var unzoom_limit_vector: Vector2
 
 var time_since_last_entity: float
 
 
-func _process(delta):
+func _ready():
+	zoom_limit_vector = Vector2(zoom_limit, zoom_limit)
+	unzoom_limit_vector = Vector2(unzoom_limit, unzoom_limit)
+
+
+func _process(delta):	
 	time_since_last_entity += delta
 	
 	var entity_count = $Entities.get_child_count()
@@ -44,9 +49,27 @@ func _process(delta):
 	if Input.is_action_just_pressed("unzoom"):
 		var new_zoom_vector: Vector2 = current_camera_zoom * 0.9
 		$Player/Camera2D.zoom = new_zoom_vector if new_zoom_vector > unzoom_limit_vector else unzoom_limit_vector
+		
+	# Handle enemies:
+	for enemy in $Enemies.get_children():
+		enemy.player_position = $Player.global_position
 
 
-func _on_player_shoot_bullet(pos, speed_vector, speed, damage):
+func _on_tank_shoot_bullet(pos, speed_vector, speed, damage):
+	# Create a bullet, give it a position and a speed, and add it to the Bullets node
+	var bullet = bullet_normal_scene.instantiate() as RigidBody2D
+	bullet.position = pos
+	bullet.linear_velocity = speed_vector
+	bullet.damage = damage
+	bullet.speed = speed
+	$Bullets.add_child(bullet)
+
+
+func _on_enemy_tank_shoot_bullet(pos, speed_vector, speed, damage):
+	enemy_shoot_bullet(pos, speed_vector, speed, damage)
+
+
+func enemy_shoot_bullet(pos, speed_vector, speed, damage):
 	# Create a bullet, give it a position and a speed, and add it to the Bullets node
 	var bullet = bullet_normal_scene.instantiate() as RigidBody2D
 	bullet.position = pos
@@ -74,21 +97,10 @@ func spawn_random_shape() -> void:
 		spawn_shape(pentagon_scene, get_random_pos())
 
 	spawn_shape(square_scene, get_random_pos())
-		
+
 
 func spawn_shape(shape_scene: PackedScene, pos: Vector2) -> void:
 	var shape: RigidBody2D = shape_scene.instantiate() as RigidBody2D
 	shape.global_position = pos
 	$Entities.add_child(shape)
 
-
-func _on_skill_upgrade_menu_upgrade_damage():
-	$Player.bullet_damage += $Player.bullet_damage * 0.2
-
-
-func _on_skill_upgrade_menu_upgrade_bullet_speed():
-	$Player.bullet_speed += $Player.bullet_speed * 0.15
-
-
-func _on_skill_upgrade_menu_upgrade_reload():
-	$Player.reload_time -= $Player.reload_time * 0.15

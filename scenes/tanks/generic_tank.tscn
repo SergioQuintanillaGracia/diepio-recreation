@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d3teobuhoihf7"]
+
+[node name="GenericTank" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="BulletMarkers" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="BulletMarkers"]
+
+[node name="Body" type="Sprite2D" parent="."]

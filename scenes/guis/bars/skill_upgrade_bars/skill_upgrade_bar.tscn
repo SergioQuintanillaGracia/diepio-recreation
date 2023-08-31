@@ -32,6 +32,7 @@ offset_left = 288.0
 offset_right = 387.0
 offset_bottom = 98.0
 scale = Vector2(0.409, 0.409)
+focus_mode = 0
 texture_normal = ExtResource("4_rf6t5")
 
 [node name="Label" type="Label" parent="."]

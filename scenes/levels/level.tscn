@@ -1,24 +1,25 @@
 [gd_scene load_steps=5 format=3 uid="uid://54sujvi3p024"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_j0gk2"]
-[ext_resource type="Texture2D" uid="uid://l6pe0ip3mpxi" path="res://assets/images/backgrounds/background.png" id="2_0v1cf"]
-[ext_resource type="PackedScene" uid="uid://cg8ocgn34qhup" path="res://scenes/tanks/default_tank.tscn" id="2_locjl"]
-[ext_resource type="PackedScene" uid="uid://dxxqcf7217w5c" path="res://scenes/guis/menus/skill_upgrade_menu.tscn" id="4_vadb5"]
+[ext_resource type="Texture2D" uid="uid://cgvrkoxsmdpk2" path="res://assets/images/backgrounds/background_dark.png" id="2_3yubc"]
+[ext_resource type="PackedScene" uid="uid://cpoijbeuykj5h" path="res://scenes/tanks/players/tank.tscn" id="3_k0hsx"]
+[ext_resource type="PackedScene" uid="uid://cfmmri0h4adb6" path="res://scenes/tanks/enemies/enemy_tank.tscn" id="3_n1p43"]
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("spawn_limit_1", "spawn_limit_2")]
 script = ExtResource("1_j0gk2")
 entity_limit = 120
 square_chance = 0.75
-triangle_chance = 0.22
-pentagon_chance = 0.03
+triangle_chance = 0.2
+pentagon_chance = 0.05
 spawn_limit_1 = NodePath("EntitySpawnLimits/Limit1")
 spawn_limit_2 = NodePath("EntitySpawnLimits/Limit2")
+unzoom_limit = 0.3
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 4
 texture_repeat = 2
 position = Vector2(946, 547)
-texture = ExtResource("2_0v1cf")
+texture = ExtResource("2_3yubc")
 region_enabled = true
 region_rect = Rect2(-10000, -10000, 10000, 10000)
 
@@ -34,20 +35,18 @@ position = Vector2(2708, -1201)
 
 [node name="Bullets" type="Node2D" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("2_locjl")]
-position = Vector2(139, 732)
-scale = Vector2(0.3, 0.3)
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="EnemyTank" parent="Enemies" instance=ExtResource("3_n1p43")]
+position = Vector2(451, -207)
+
+[node name="Player" parent="." instance=ExtResource("3_k0hsx")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-0.00012207, -0.000366211)
+position = Vector2(-0.000133514, -0.000141144)
+scale = Vector2(0.3, 0.3)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="UpgradesGUI" type="CanvasLayer" parent="."]
-
-[node name="skill_upgrade_menu" parent="UpgradesGUI" instance=ExtResource("4_vadb5")]
-
-[connection signal="shoot_bullet" from="Player" to="." method="_on_player_shoot_bullet"]
-[connection signal="upgrade_bullet_speed" from="UpgradesGUI/skill_upgrade_menu" to="." method="_on_skill_upgrade_menu_upgrade_bullet_speed"]
-[connection signal="upgrade_damage" from="UpgradesGUI/skill_upgrade_menu" to="." method="_on_skill_upgrade_menu_upgrade_damage"]
-[connection signal="upgrade_reload" from="UpgradesGUI/skill_upgrade_menu" to="." method="_on_skill_upgrade_menu_upgrade_reload"]
+[connection signal="shoot_bullet" from="Enemies/EnemyTank" to="." method="_on_enemy_tank_shoot_bullet"]
+[connection signal="shoot_bullet" from="Player" to="." method="_on_tank_shoot_bullet"]
