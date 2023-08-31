@@ -17,7 +17,14 @@ var pentagon_scene: PackedScene = preload("res://scenes/entities/pentagon.tscn")
 @export var spawn_limit_1: Marker2D
 @export var spawn_limit_2: Marker2D
 
+@export var zoom_limit: float = 1.5
+@export var unzoom_limit: float = 0.5
+
+var zoom_limit_vector: Vector2 = Vector2(zoom_limit, zoom_limit)
+var unzoom_limit_vector: Vector2 = Vector2(unzoom_limit, unzoom_limit)
+
 var time_since_last_entity: float
+
 
 func _process(delta):
 	time_since_last_entity += delta
@@ -31,18 +38,21 @@ func _process(delta):
 	var current_camera_zoom: Vector2 = $Player/Camera2D.zoom
 	
 	if Input.is_action_just_pressed("zoom"):
-		$Player/Camera2D.zoom += current_camera_zoom * 0.1
+		var new_zoom_vector: Vector2 = current_camera_zoom * 1.1
+		$Player/Camera2D.zoom = new_zoom_vector if new_zoom_vector < zoom_limit_vector else zoom_limit_vector
 		
 	if Input.is_action_just_pressed("unzoom"):
-		$Player/Camera2D.zoom -= current_camera_zoom * 0.1
+		var new_zoom_vector: Vector2 = current_camera_zoom * 0.9
+		$Player/Camera2D.zoom = new_zoom_vector if new_zoom_vector > unzoom_limit_vector else unzoom_limit_vector
 
 
-func _on_player_shoot_bullet(pos, speed, damage):
+func _on_player_shoot_bullet(pos, speed_vector, speed, damage):
 	# Create a bullet, give it a position and a speed, and add it to the Bullets node
 	var bullet = bullet_normal_scene.instantiate() as RigidBody2D
-	bullet.damage = damage
 	bullet.position = pos
-	bullet.linear_velocity = speed
+	bullet.linear_velocity = speed_vector
+	bullet.damage = damage
+	bullet.speed = speed
 	$Bullets.add_child(bullet)
 
 
@@ -73,4 +83,12 @@ func spawn_shape(shape_scene: PackedScene, pos: Vector2) -> void:
 
 
 func _on_skill_upgrade_menu_upgrade_damage():
-	pass # Replace with function body.
+	$Player.bullet_damage += $Player.bullet_damage * 0.2
+
+
+func _on_skill_upgrade_menu_upgrade_bullet_speed():
+	$Player.bullet_speed += $Player.bullet_speed * 0.15
+
+
+func _on_skill_upgrade_menu_upgrade_reload():
+	$Player.reload_time -= $Player.reload_time * 0.15

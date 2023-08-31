@@ -2,6 +2,7 @@ extends RigidBody2D
 
 # The damage should be set just after instantiating the scene
 var damage: float
+var speed: float
 
 var life_time_sec: float
 var smooth_death_time_sec: float
@@ -26,10 +27,10 @@ func smooth_death():
 	if $SmoothDeathTimer.is_stopped():
 		damage = 0
 		$SmoothDeathTimer.start()
-		
+
 
 func smooth_death_collision():
-	linear_damp = 30
+	linear_damp = speed / 700 * 30
 	smooth_death()
 
 

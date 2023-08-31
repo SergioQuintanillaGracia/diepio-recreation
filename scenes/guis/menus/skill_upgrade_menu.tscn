@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxxqcf7217w5c"]
+[gd_scene load_steps=8 format=3 uid="uid://dxxqcf7217w5c"]
 
 [ext_resource type="PackedScene" uid="uid://bgi1biyxae5se" path="res://scenes/guis/bars/skill_upgrade_bars/damage_upgrade_bar.tscn" id="1_aubha"]
 [ext_resource type="Script" path="res://scenes/guis/menus/skill_upgrade_menu.gd" id="1_kt8br"]
 [ext_resource type="PackedScene" uid="uid://bgvo1p6cxw5vy" path="res://scenes/guis/bars/skill_upgrade_bars/bullet_speed_upgrade_bar.tscn" id="2_krs1y"]
 [ext_resource type="PackedScene" uid="uid://vyr4kyt2ebvn" path="res://scenes/guis/bars/skill_upgrade_bars/reload_upgrade_bar.tscn" id="3_y7rae"]
+[ext_resource type="PackedScene" uid="uid://wx6yjcyyqn4r" path="res://scenes/guis/bars/skill_upgrade_bars/health_upgrade_bar.tscn" id="5_7sof0"]
+[ext_resource type="PackedScene" uid="uid://dl1chp2bfy2gk" path="res://scenes/guis/bars/skill_upgrade_bars/regeneration_upgrade_bar.tscn" id="6_gvcux"]
+[ext_resource type="PackedScene" uid="uid://bqfxx6rtq26e1" path="res://scenes/guis/bars/skill_upgrade_bars/precision_upgrade_bar.tscn" id="7_mk8lv"]
 
 [node name="skill_upgrade_menu" type="Control"]
 layout_mode = 3
@@ -45,6 +48,37 @@ offset_right = 392.0
 offset_bottom = 120.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="HealthUpgradeBar" parent="." instance=ExtResource("5_7sof0")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -352.0
+offset_top = 24.0
+offset_right = -352.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="RegenerationUpgradeBar" parent="." instance=ExtResource("6_gvcux")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -352.0
+offset_top = 72.0
+offset_right = -352.0
+offset_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="PrecisionUpgradeBar" parent="." instance=ExtResource("7_mk8lv")]
+layout_mode = 1
+offset_left = 24.0
+offset_top = 168.0
+offset_right = -1568.0
+offset_bottom = -872.0
 
 [connection signal="upgrade_skill_button_pressed" from="DamageUpgradeBar" to="." method="_on_damage_upgrade_bar_upgrade_skill_button_pressed"]
 [connection signal="upgrade_skill_button_pressed" from="BulletSpeedUpgradeBar" to="." method="_on_bullet_speed_upgrade_bar_upgrade_skill_button_pressed"]
