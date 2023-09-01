@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkxe4vqv1xuc4"]
+[gd_scene load_steps=3 format=3 uid="uid://dg4bdn8qjr1uv"]
 
-[ext_resource type="PackedScene" uid="uid://cpu76iav71en7" path="res://scenes/entities/generic_entity.tscn" id="1_1uinf"]
 [ext_resource type="Texture2D" uid="uid://hcsk14lgw470" path="res://assets/images/entities/square.png" id="1_g5m44"]
+[ext_resource type="PackedScene" uid="uid://dvyutde2du38" path="res://scenes/entities/generic_entity.tscn" id="1_kl8xn"]
 
-[node name="Square" instance=ExtResource("1_1uinf")]
+[node name="Square" instance=ExtResource("1_kl8xn")]
 life = 2.0
 
 [node name="CollisionPolygon2D" parent="." index="0"]
@@ -14,4 +14,4 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_g5m44")
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
-polygon = PackedVector2Array(-26, -26, 26, -26, 26, 26, -26, 26)
+polygon = PackedVector2Array(-26, -26, -26, 26, 26, 26, 26, -26)

@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dc4xwiw5bhhtp"]
+[gd_scene load_steps=4 format=3 uid="uid://dc4xwiw5bhhtp"]
 
 [ext_resource type="PackedScene" uid="uid://d3teobuhoihf7" path="res://scenes/tanks/generic_tank.tscn" id="1_ava5n"]
 [ext_resource type="Script" path="res://scenes/tanks/enemies/generic_enemy_tank.gd" id="2_d2t7w"]
+[ext_resource type="PackedScene" uid="uid://bsrsekn1gsv23" path="res://scenes/guis/bars/life_bar.tscn" id="3_k3ub7"]
 
 [node name="GenericEnemyTank" instance=ExtResource("1_ava5n")]
 scale = Vector2(0.35, 0.35)
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("2_d2t7w")
+
+[node name="LifeBar" parent="." index="3" instance=ExtResource("3_k3ub7")]

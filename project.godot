@@ -82,9 +82,11 @@ autofire={
 
 [layer_names]
 
-2d_physics/layer_1="Tank Bodies"
-2d_physics/layer_2="Bullets"
+2d_physics/layer_1="Player Tank Bodies"
+2d_physics/layer_2="Player Bullets"
 2d_physics/layer_3="Entities"
+2d_physics/layer_4="Enemy Tank Bodies"
+2d_physics/layer_5="Enemy Bullets"
 
 [rendering]
 

@@ -8,7 +8,7 @@ var life_time_sec: float
 var smooth_death_time_sec: float
 
 # When a player shoots the bullet, the shooter variable will be set to the player node
-var shooter: CharacterBody2D
+# var shooter: CharacterBody2D # TEMPORARY DISABLED, PROBABLY NOT NECESSARY
 
 func _ready():
 	life_time_sec = $LifeTimer.wait_time

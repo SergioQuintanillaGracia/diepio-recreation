@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1nstpgkfffh0"]
 
 [ext_resource type="Texture2D" uid="uid://f16st6y8uk5t" path="res://assets/images/entities/triangle.png" id="1_2cpk7"]
-[ext_resource type="PackedScene" uid="uid://cpu76iav71en7" path="res://scenes/entities/generic_entity.tscn" id="1_2ptlw"]
+[ext_resource type="PackedScene" uid="uid://dvyutde2du38" path="res://scenes/entities/generic_entity.tscn" id="1_2ptlw"]
 
 [node name="Triangle" instance=ExtResource("1_2ptlw")]
 life = 5.0

@@ -33,12 +33,12 @@ position = Vector2(2708, -1201)
 
 [node name="Entities" type="Node2D" parent="."]
 
-[node name="Bullets" type="Node2D" parent="."]
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="EnemyTank" parent="Enemies" instance=ExtResource("3_n1p43")]
 position = Vector2(451, -207)
+collision_layer = 1
+collision_mask = 1
 
 [node name="Player" parent="." instance=ExtResource("3_k0hsx")]
 
@@ -47,6 +47,8 @@ position = Vector2(-0.000133514, -0.000141144)
 scale = Vector2(0.3, 0.3)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="Bullets" type="Node2D" parent="."]
 
 [connection signal="shoot_bullet" from="Enemies/EnemyTank" to="." method="_on_enemy_tank_shoot_bullet"]
 [connection signal="shoot_bullet" from="Player" to="." method="_on_tank_shoot_bullet"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhb5u3ro5kdim"]
 
 [ext_resource type="Texture2D" uid="uid://boh8k7m32r8da" path="res://assets/images/entities/pentagon.png" id="1_ex65l"]
-[ext_resource type="PackedScene" uid="uid://cpu76iav71en7" path="res://scenes/entities/generic_entity.tscn" id="1_naws8"]
+[ext_resource type="PackedScene" uid="uid://dvyutde2du38" path="res://scenes/entities/generic_entity.tscn" id="1_naws8"]
 
 [node name="Pentagon" instance=ExtResource("1_naws8")]
 life = 15.0

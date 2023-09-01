@@ -10,14 +10,22 @@ signal shoot_bullet(pos, speed_vector, speed, damage, is_from_enemy)
 var bullet_damage: float
 var bullet_speed: float
 var reload_time: float
+var health: float
 
+var remaining_health: float
 var reload_time_left: float
 
 var can_shoot_bullet: bool = true
 var is_autofire_enabled: bool = false
 
+var life_bar_position_offset: Vector2
 
-func _ready():	
+
+func _ready():
+	remaining_health = health
+	life_bar_position_offset = $LifeBar.position
+	$LifeBar.modulate.a = 1
+	
 	bullet_damage = $UpgradesData.bullet_damage[0]
 	bullet_speed = $UpgradesData.bullet_speed[0]
 	reload_time = $UpgradesData.reload_time[0]
@@ -32,9 +40,14 @@ func _process(delta):
 	velocity = direction * speed
 	
 	look_at(get_global_mouse_position())
+	
 	rotation_degrees += 90
 
 	move_and_slide()
+	
+	# Update the life_bar so it always stays where it should be
+	$LifeBar.global_rotation = 0
+	$LifeBar.global_position = global_position + life_bar_position_offset
 	
 	# Handle player input:
 	if (Input.is_action_pressed("primary") or is_autofire_enabled) and reload_time_left < 0:

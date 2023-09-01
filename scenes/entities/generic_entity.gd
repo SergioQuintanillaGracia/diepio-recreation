@@ -24,7 +24,6 @@ var movement_direction: Vector2
 var rotation_direction: float
 
 var life_bar_scene: PackedScene = preload("res://scenes/guis/bars/life_bar.tscn")
-var life_bar: Node2D
 var life_bar_position_offset: Vector2
 
 func _ready():
@@ -62,10 +61,6 @@ func _process(delta):
 	
 	set_linear_velocity(movement_direction * movement_speed)
 	angular_velocity = rotation_direction * rotation_speed
-
-
-func set_life_bar(bar: Node2D):
-	life_bar = bar
 
 
 func reset_random_movement():

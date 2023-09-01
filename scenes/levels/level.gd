@@ -1,6 +1,8 @@
 extends Node2D
 
-var bullet_normal_scene: PackedScene = preload("res://scenes/bullets/bullet_normal.tscn")
+var player_bullet_normal_scene: PackedScene = preload("res://scenes/bullets/player_bullet_normal.tscn")
+var enemy_bullet_normal_scene: PackedScene = preload("res://scenes/bullets/enemy_bullet_normal.tscn")
+
 var square_scene: PackedScene = preload("res://scenes/entities/square.tscn")
 var triangle_scene: PackedScene = preload("res://scenes/entities/triangle.tscn")
 var pentagon_scene: PackedScene = preload("res://scenes/entities/pentagon.tscn")
@@ -57,7 +59,7 @@ func _process(delta):
 
 func _on_tank_shoot_bullet(pos, speed_vector, speed, damage):
 	# Create a bullet, give it a position and a speed, and add it to the Bullets node
-	var bullet = bullet_normal_scene.instantiate() as RigidBody2D
+	var bullet = player_bullet_normal_scene.instantiate() as RigidBody2D
 	bullet.position = pos
 	bullet.linear_velocity = speed_vector
 	bullet.damage = damage
@@ -71,7 +73,7 @@ func _on_enemy_tank_shoot_bullet(pos, speed_vector, speed, damage):
 
 func enemy_shoot_bullet(pos, speed_vector, speed, damage):
 	# Create a bullet, give it a position and a speed, and add it to the Bullets node
-	var bullet = bullet_normal_scene.instantiate() as RigidBody2D
+	var bullet = enemy_bullet_normal_scene.instantiate() as RigidBody2D
 	bullet.position = pos
 	bullet.linear_velocity = speed_vector
 	bullet.damage = damage
