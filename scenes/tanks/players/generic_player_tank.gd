@@ -4,12 +4,12 @@ signal shoot_bullet(pos, speed_vector, speed, damage, is_from_enemy)
 
 @export var player_name: String
 @export var speed: int = 500
-@export var random_bullet_angle: float = 5
 
 # Player upgradeable attributes:
 var bullet_damage: float
 var bullet_speed: float
 var reload_time: float
+var precision_angle: float
 var health: float
 
 var remaining_health: float
@@ -31,6 +31,7 @@ func _ready():
 	bullet_damage = $UpgradesData.bullet_damage[0]
 	bullet_speed = $UpgradesData.bullet_speed[0]
 	reload_time = $UpgradesData.reload_time[0]
+	precision_angle = $UpgradesData.precision_angle[0]
 	health = $UpgradesData.health[0]
 	remaining_health = health
 	reload_time_left = reload_time
@@ -59,7 +60,7 @@ func _process(delta):
 			# Send a signal with information about where to create the bullet, so it can be created inside level
 			# Get the direction and random angle to shoot the bullet
 			for marker in $BulletMarkers.get_children():
-				var random_choosen_angle = randf_range(-random_bullet_angle, random_bullet_angle)
+				var random_choosen_angle = randf_range(-precision_angle, precision_angle)
 				var shoot_angle: float = rad_to_deg((get_global_mouse_position() - position).angle()) + random_choosen_angle + marker.rotation_degrees
 				
 				var shoot_direction: Vector2 = Vector2(cos(deg_to_rad(shoot_angle)), sin(deg_to_rad(shoot_angle)))
@@ -98,7 +99,7 @@ func handle_collision(area):
 			if remaining_health <= 0:
 				die()
 				$LifeBar.set_value(0)
-				
+			
 			var new_bullet_damage = bullet.damage - damage
 			area.get_parent().damage = new_bullet_damage
 				
@@ -120,3 +121,7 @@ func _on_skill_upgrade_menu_upgrade_bullet_speed(current_upgrade_level):
 
 func _on_skill_upgrade_menu_upgrade_reload(current_upgrade_level):
 	reload_time = $UpgradesData.reload_time[current_upgrade_level]
+
+
+func _on_skill_upgrade_menu_upgrade_precision(current_upgrade_level):
+	precision_angle = $UpgradesData.precision_angle[current_upgrade_level]

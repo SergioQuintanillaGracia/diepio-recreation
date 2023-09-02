@@ -70,7 +70,7 @@ func reset_random_movement():
 
 
 func handle_collision(area: Area2D):
-	if area.is_in_group("player_bullets"):
+	if area.get_parent().is_in_group("player_bullets"):
 		var bullet: RigidBody2D = area.get_parent()
 		var damage: float = bullet.damage if remaining_life > bullet.damage else remaining_life
 		remaining_life -= damage
@@ -94,5 +94,4 @@ func handle_collision(area: Area2D):
 
 
 func _on_area_2d_area_entered(area):
-	# A bullet / player has collided with the Area2D
 	handle_collision(area)

@@ -8,12 +8,15 @@
 radius = 45.0
 
 [node name="Tank" instance=ExtResource("1_ue3tt")]
+player_name = "Test Name"
 
 [node name="UpgradesData" parent="." index="0"]
 bullet_damage = [0.5, 1.0, 1.5, 2.0, 2.75, 4.0, 5.5, 7.0, 9.0]
 bullet_speed = [700.0, 800.0, 900.0, 1000.0, 1100.0, 1200.0, 1300.0, 1400.0, 1500.0]
 reload_time = [0.4, 0.375, 0.35, 0.325, 0.3, 0.275, 0.25, 0.225, 0.2]
-health = [5.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0]
+precision_angle = [10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0]
+health = [20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0]
+regeneration = [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_2w72c")
