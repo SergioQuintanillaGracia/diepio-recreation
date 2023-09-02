@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/bullets/generic_bullet.gd" id="1_nppcw"]
 
-[node name="GenericBullet" type="RigidBody2D"]
+[node name="GenericBullet" type="RigidBody2D" groups=["bullets"]]
 gravity_scale = 0.0
 script = ExtResource("1_nppcw")
 

@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_knyhu"]
 radius = 15.5
 
-[node name="EnemyBulletNormal" instance=ExtResource("1_bdc80")]
+[node name="EnemyBulletNormal" groups=["enemy_bullets"] instance=ExtResource("1_bdc80")]
 
 [node name="Area2D" parent="." index="0"]
 collision_layer = 16

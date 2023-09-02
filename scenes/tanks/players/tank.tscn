@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cqwkmshy4gidc" path="res://assets/images/tanks/gun_normal.png" id="2_pqpxg"]
 [ext_resource type="Texture2D" uid="uid://b4twd83b7nicf" path="res://assets/images/tanks/blue_player_body.png" id="3_rf7qk"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_so5nr"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_2w72c"]
 radius = 45.0
 
 [node name="Tank" instance=ExtResource("1_ue3tt")]
@@ -13,18 +13,18 @@ radius = 45.0
 bullet_damage = [0.5, 1.0, 1.5, 2.0, 2.75, 4.0, 5.5, 7.0, 9.0]
 bullet_speed = [700.0, 800.0, 900.0, 1000.0, 1100.0, 1200.0, 1300.0, 1400.0, 1500.0]
 reload_time = [0.4, 0.375, 0.35, 0.325, 0.3, 0.275, 0.25, 0.225, 0.2]
-health = [20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0]
+health = [5.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0]
 
-[node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource("CircleShape2D_so5nr")
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_2w72c")
 
-[node name="Marker2D" parent="BulletMarkers" index="0"]
-position = Vector2(0, -79)
-
-[node name="GunNormal" type="Sprite2D" parent="." index="3"]
+[node name="GunNormal" type="Sprite2D" parent="." index="2"]
 position = Vector2(0, -50)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_pqpxg")
+
+[node name="Marker2D" parent="BulletMarkers" index="0"]
+position = Vector2(0, -79)
 
 [node name="Body" parent="." index="4"]
 scale = Vector2(0.35, 0.35)
@@ -32,3 +32,5 @@ texture = ExtResource("3_rf7qk")
 
 [node name="LifeBar" parent="." index="5"]
 position = Vector2(0, 64)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

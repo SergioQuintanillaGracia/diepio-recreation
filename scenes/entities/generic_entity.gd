@@ -70,26 +70,27 @@ func reset_random_movement():
 
 
 func handle_collision(area: Area2D):
-	var bullet: RigidBody2D = area.get_parent()
-	var damage: float = bullet.damage if remaining_life > bullet.damage else remaining_life
-	remaining_life -= damage
-	
-	if damage != 0:
-		$LifeBar.modulate.a = 1
-	
-	if remaining_life <= 0:
-		should_die = true
-		$LifeBar.set_value(0)
+	if area.is_in_group("player_bullets"):
+		var bullet: RigidBody2D = area.get_parent()
+		var damage: float = bullet.damage if remaining_life > bullet.damage else remaining_life
+		remaining_life -= damage
 		
-	var new_bullet_damage = bullet.damage - damage
-	area.get_parent().damage = new_bullet_damage
+		if damage != 0:
+			$LifeBar.modulate.a = 1
 		
-	if new_bullet_damage <= 0:
-		area.get_parent().smooth_death_collision()
-	
-	if not should_die:
-		var new_life_value: float = $LifeBar.get_value() - 100 / life * damage
-		$LifeBar.set_value(new_life_value)
+		if remaining_life <= 0:
+			should_die = true
+			$LifeBar.set_value(0)
+			
+		var new_bullet_damage = bullet.damage - damage
+		area.get_parent().damage = new_bullet_damage
+			
+		if new_bullet_damage <= 0:
+			area.get_parent().smooth_death_collision()
+		
+		if not should_die:
+			var new_life_value: float = $LifeBar.get_value() - 100 / life * damage
+			$LifeBar.set_value(new_life_value)
 
 
 func _on_area_2d_area_entered(area):

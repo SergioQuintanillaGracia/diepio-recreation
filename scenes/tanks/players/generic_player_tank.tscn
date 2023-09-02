@@ -7,12 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://dxxqcf7217w5c" path="res://scenes/guis/menus/skill_upgrade_menu.tscn" id="4_s6m8r"]
 
 [node name="GenericPlayerTank" instance=ExtResource("1_oefks")]
+collision_mask = 16
 script = ExtResource("2_p167f")
 
 [node name="UpgradesData" type="Node2D" parent="." index="0"]
 script = ExtResource("3_17jhd")
 
+[node name="Area2D" parent="." index="1"]
+collision_mask = 16
+
 [node name="LifeBar" parent="." index="4" instance=ExtResource("4_2b6wb")]
+scale = Vector2(1.3, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
 
