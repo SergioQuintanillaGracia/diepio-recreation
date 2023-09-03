@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+var life_bar_scene: PackedScene = preload("res://scenes/guis/bars/life_bar/life_bar.tscn")
+var life_bar_position_offset: Vector2
+
 @export var life: float
 var remaining_life: float
 
@@ -23,8 +26,11 @@ var time_until_movement_change_left: float = 0
 var movement_direction: Vector2
 var rotation_direction: float
 
-var life_bar_scene: PackedScene = preload("res://scenes/guis/bars/life_bar.tscn")
-var life_bar_position_offset: Vector2
+# The points the entity will give to the player when killed. This variable should be set inside
+# the level scene, after creating the entity, because the points an entity gives to the player
+# can be level dependent.
+var points: int
+
 
 func _ready():
 	modulate.a = 0

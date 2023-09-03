@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d3teobuhoihf7" path="res://scenes/tanks/generic_tank.tscn" id="1_oefks"]
 [ext_resource type="Script" path="res://scenes/tanks/players/generic_player_tank.gd" id="2_p167f"]
 [ext_resource type="Script" path="res://scenes/tanks/players/upgrades_data.gd" id="3_17jhd"]
-[ext_resource type="PackedScene" uid="uid://bsrsekn1gsv23" path="res://scenes/guis/bars/life_bar.tscn" id="4_2b6wb"]
+[ext_resource type="PackedScene" uid="uid://bsrsekn1gsv23" path="res://scenes/guis/bars/life_bar/life_bar.tscn" id="4_2b6wb"]
 [ext_resource type="PackedScene" uid="uid://dxxqcf7217w5c" path="res://scenes/guis/menus/skill_upgrade_menu.tscn" id="4_s6m8r"]
 
 [node name="GenericPlayerTank" instance=ExtResource("1_oefks")]

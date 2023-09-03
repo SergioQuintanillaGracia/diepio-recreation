@@ -39,8 +39,6 @@ position = Vector2(2708, -1201)
 
 [node name="EnemyTank" parent="Enemies" instance=ExtResource("3_n1p43")]
 position = Vector2(951, -534)
-collision_layer = 1
-collision_mask = 1
 
 [node name="EnemyTank2" parent="Enemies" instance=ExtResource("3_n1p43")]
 position = Vector2(-946, -525)
@@ -66,11 +64,11 @@ bullet_speed = 1300.0
 reload_time = 0.1
 
 [node name="Player" parent="." instance=ExtResource("3_k0hsx")]
-collision_mask = 1
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-0.000133514, -0.000141144)
 scale = Vector2(0.3, 0.3)
+zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 

@@ -10,7 +10,7 @@ var pentagon_scene: PackedScene = preload("res://scenes/entities/pentagon.tscn")
 @export var time_between_entity_spawns_sec: float
 @export var entity_limit: int
 
-# The time in seconds between different entity types spawns
+# The time in seconds between different entity types spawns.
 @export var square_chance: float
 @export var triangle_chance: float
 @export var pentagon_chance: float
@@ -18,6 +18,22 @@ var pentagon_scene: PackedScene = preload("res://scenes/entities/pentagon.tscn")
 # Entities will spawn inside these limits. The Marker2Ds should be set inside the inspector.
 @export var spawn_limit_1: Marker2D
 @export var spawn_limit_2: Marker2D
+
+# The points needed to get to the next tank level. Every time the player gets to a new level,
+# they will get a skill point that they can use to upgrade one skill (that is not health related).
+# Ex: [5, 15] means you need 5 points to get to level 1, and 10 points more to get to level 2.
+# The array should be filled inside the inspector.
+@export var level_points: Array = [0, 0, 0, 0, 0, 0, 0, 0,
+								   0, 0, 0, 0, 0, 0, 0, 0,
+								   0, 0, 0, 0, 0, 0, 0, 0,
+								   0, 0, 0, 0, 0, 0, 0, 0,
+								   0, 0, 0, 0, 0, 0, 0, 0]
+								
+# The points each entity gives to the player when killed. Can depend on the level, that's why they
+# should be filled inside the inspector.
+@export var square_points: int
+@export var triangle_points: int
+@export var pentagon_points: int
 
 @export var zoom_limit: float = 1.5
 @export var unzoom_limit: float = 0.5
@@ -88,16 +104,14 @@ func spawn_random_shape() -> void:
 	var random_value: float = randf_range(0, 1)
 	
 	if random_value < square_chance:
-		spawn_shape(square_scene, get_random_pos())
+		spawn_shape(square_scene, get_random_pos(), square_points)
 	elif random_value < square_chance + triangle_chance:
-		spawn_shape(triangle_scene, get_random_pos())
+		spawn_shape(triangle_scene, get_random_pos(), triangle_points)
 	else:
-		spawn_shape(pentagon_scene, get_random_pos())
-
-	spawn_shape(square_scene, get_random_pos())
+		spawn_shape(pentagon_scene, get_random_pos(), pentagon_points)
 
 
-func spawn_shape(shape_scene: PackedScene, pos: Vector2) -> void:
+func spawn_shape(shape_scene: PackedScene, pos: Vector2, points: int) -> void:
 	var shape: RigidBody2D = shape_scene.instantiate() as RigidBody2D
 	shape.global_position = pos
 	$Entities.add_child(shape)

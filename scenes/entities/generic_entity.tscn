@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvyutde2du38"]
 
 [ext_resource type="Script" path="res://scenes/entities/generic_entity.gd" id="1_orv1o"]
-[ext_resource type="PackedScene" uid="uid://bsrsekn1gsv23" path="res://scenes/guis/bars/life_bar.tscn" id="2_338fw"]
+[ext_resource type="PackedScene" uid="uid://bsrsekn1gsv23" path="res://scenes/guis/bars/life_bar/life_bar.tscn" id="2_338fw"]
 
 [node name="GenericEntity" type="RigidBody2D"]
 collision_layer = 4
