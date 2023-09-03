@@ -6,6 +6,7 @@ signal upgrade_reload(current_upgrade_level: int)
 signal upgrade_precision(current_upgrade_level: int)
 signal upgrade_health(current_upgrade_level: int)
 signal upgrade_regeneration(current_upgrade_level: int)
+signal upgrade_player_speed(current_upgrade_level: int)
 
 
 func _on_damage_upgrade_bar_upgrade_skill_button_pressed(progressbar):
@@ -26,6 +27,11 @@ func _on_reload_upgrade_bar_upgrade_skill_button_pressed(progressbar):
 func _on_precision_upgrade_bar_upgrade_skill_button_pressed(progressbar):
 	add_progress_to_progressbar(progressbar)
 	upgrade_precision.emit($PrecisionUpgradeBar.get_current_upgrade_level())
+	
+	
+func _on_player_speed_upgrade_bar_upgrade_skill_button_pressed(progressbar):
+	add_progress_to_progressbar(progressbar)
+	upgrade_player_speed.emit($PlayerSpeedUpgradeBar.get_current_upgrade_level())
 
 
 func _on_health_upgrade_bar_upgrade_skill_button_pressed(progressbar):

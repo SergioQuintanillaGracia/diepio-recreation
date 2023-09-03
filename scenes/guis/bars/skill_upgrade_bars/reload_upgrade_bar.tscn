@@ -5,7 +5,7 @@
 [node name="ReloadUpgradeBar" instance=ExtResource("1_hm841")]
 
 [node name="TextureProgressBar" parent="." index="0"]
-tint_progress = Color(0.0823529, 0.639216, 0, 1)
+tint_progress = Color(0.0823529, 0.639216, 0, 0.784314)
 
 [node name="Label" parent="." index="2"]
 text = "Reload

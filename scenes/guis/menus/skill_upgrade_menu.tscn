@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxxqcf7217w5c"]
+[gd_scene load_steps=9 format=3 uid="uid://dxxqcf7217w5c"]
 
 [ext_resource type="PackedScene" uid="uid://bgi1biyxae5se" path="res://scenes/guis/bars/skill_upgrade_bars/damage_upgrade_bar.tscn" id="1_aubha"]
 [ext_resource type="Script" path="res://scenes/guis/menus/skill_upgrade_menu.gd" id="1_kt8br"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://wx6yjcyyqn4r" path="res://scenes/guis/bars/skill_upgrade_bars/health_upgrade_bar.tscn" id="5_7sof0"]
 [ext_resource type="PackedScene" uid="uid://dl1chp2bfy2gk" path="res://scenes/guis/bars/skill_upgrade_bars/regeneration_upgrade_bar.tscn" id="6_gvcux"]
 [ext_resource type="PackedScene" uid="uid://bqfxx6rtq26e1" path="res://scenes/guis/bars/skill_upgrade_bars/precision_upgrade_bar.tscn" id="7_mk8lv"]
+[ext_resource type="PackedScene" uid="uid://dxw6qpdftspnw" path="res://scenes/guis/bars/skill_upgrade_bars/player_speed_upgrade_bar.tscn" id="8_ttwwv"]
 
 [node name="skill_upgrade_menu" type="Control"]
 layout_mode = 3
@@ -80,9 +81,17 @@ offset_top = 168.0
 offset_right = -1568.0
 offset_bottom = -872.0
 
+[node name="PlayerSpeedUpgradeBar" parent="." instance=ExtResource("8_ttwwv")]
+layout_mode = 1
+offset_left = 24.0
+offset_top = 216.0
+offset_right = -1568.0
+offset_bottom = -824.0
+
 [connection signal="upgrade_skill_button_pressed" from="DamageUpgradeBar" to="." method="_on_damage_upgrade_bar_upgrade_skill_button_pressed"]
 [connection signal="upgrade_skill_button_pressed" from="BulletSpeedUpgradeBar" to="." method="_on_bullet_speed_upgrade_bar_upgrade_skill_button_pressed"]
 [connection signal="upgrade_skill_button_pressed" from="ReloadUpgradeBar" to="." method="_on_reload_upgrade_bar_upgrade_skill_button_pressed"]
 [connection signal="upgrade_skill_button_pressed" from="HealthUpgradeBar" to="." method="_on_health_upgrade_bar_upgrade_skill_button_pressed"]
 [connection signal="upgrade_skill_button_pressed" from="RegenerationUpgradeBar" to="." method="_on_regeneration_upgrade_bar_upgrade_skill_button_pressed"]
 [connection signal="upgrade_skill_button_pressed" from="PrecisionUpgradeBar" to="." method="_on_precision_upgrade_bar_upgrade_skill_button_pressed"]
+[connection signal="upgrade_skill_button_pressed" from="PlayerSpeedUpgradeBar" to="." method="_on_player_speed_upgrade_bar_upgrade_skill_button_pressed"]

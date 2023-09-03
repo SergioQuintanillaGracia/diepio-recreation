@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxw6qpdftspnw"]
+
+[ext_resource type="PackedScene" uid="uid://dw57awscnbm0j" path="res://scenes/guis/bars/skill_upgrade_bars/skill_upgrade_bar.tscn" id="1_s0e08"]
+
+[node name="PlayerSpeedUpgradeBar" instance=ExtResource("1_s0e08")]
+
+[node name="TextureProgressBar" parent="." index="0"]
+tint_progress = Color(0.041, 0.768067, 0.82, 0.784314)
+
+[node name="Label" parent="." index="2"]
+text = "Player Speed"

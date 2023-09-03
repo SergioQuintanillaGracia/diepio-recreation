@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://54sujvi3p024"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_j0gk2"]
-[ext_resource type="Texture2D" uid="uid://cgvrkoxsmdpk2" path="res://assets/images/backgrounds/background_dark.png" id="2_3yubc"]
+[ext_resource type="Texture2D" uid="uid://l6pe0ip3mpxi" path="res://assets/images/backgrounds/background.png" id="2_ervaa"]
 [ext_resource type="PackedScene" uid="uid://cpoijbeuykj5h" path="res://scenes/tanks/players/tank.tscn" id="3_k0hsx"]
 [ext_resource type="PackedScene" uid="uid://cfmmri0h4adb6" path="res://scenes/tanks/enemies/enemy_tank.tscn" id="3_n1p43"]
 
@@ -19,7 +19,7 @@ unzoom_limit = 0.3
 texture_filter = 4
 texture_repeat = 2
 position = Vector2(946, 547)
-texture = ExtResource("2_3yubc")
+texture = ExtResource("2_ervaa")
 region_enabled = true
 region_rect = Rect2(-10000, -10000, 10000, 10000)
 
@@ -33,12 +33,37 @@ position = Vector2(2708, -1201)
 
 [node name="Entities" type="Node2D" parent="."]
 
+[node name="Bullets" type="Node2D" parent="."]
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="EnemyTank" parent="Enemies" instance=ExtResource("3_n1p43")]
-position = Vector2(451, -207)
+position = Vector2(951, -534)
 collision_layer = 1
 collision_mask = 1
+
+[node name="EnemyTank2" parent="Enemies" instance=ExtResource("3_n1p43")]
+position = Vector2(-946, -525)
+health = 35.0
+bullet_damage = 3.0
+bullet_speed = 900.0
+reload_time = 0.2
+
+[node name="EnemyTank3" parent="Enemies" instance=ExtResource("3_n1p43")]
+position = Vector2(-946, 521)
+health = 50.0
+speed = 400
+bullet_damage = 4.0
+bullet_speed = 1100.0
+reload_time = 0.16
+
+[node name="EnemyTank4" parent="Enemies" instance=ExtResource("3_n1p43")]
+position = Vector2(951, 531)
+health = 75.0
+speed = 500
+bullet_damage = 5.0
+bullet_speed = 1300.0
+reload_time = 0.1
 
 [node name="Player" parent="." instance=ExtResource("3_k0hsx")]
 collision_mask = 1
@@ -49,7 +74,8 @@ scale = Vector2(0.3, 0.3)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="Bullets" type="Node2D" parent="."]
-
 [connection signal="shoot_bullet" from="Enemies/EnemyTank" to="." method="_on_enemy_tank_shoot_bullet"]
+[connection signal="shoot_bullet" from="Enemies/EnemyTank2" to="." method="_on_enemy_tank_2_shoot_bullet"]
+[connection signal="shoot_bullet" from="Enemies/EnemyTank3" to="." method="_on_enemy_tank_3_shoot_bullet"]
+[connection signal="shoot_bullet" from="Enemies/EnemyTank4" to="." method="_on_enemy_tank_4_shoot_bullet"]
 [connection signal="shoot_bullet" from="Player" to="." method="_on_tank_shoot_bullet"]

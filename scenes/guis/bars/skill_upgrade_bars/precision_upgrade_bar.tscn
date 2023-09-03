@@ -5,7 +5,7 @@
 [node name="PrecisionUpgradeBar" instance=ExtResource("1_pft7m")]
 
 [node name="TextureProgressBar" parent="." index="0"]
-tint_progress = Color(0.878431, 0.419608, 0.0588235, 1)
+tint_progress = Color(0.878431, 0.419608, 0.0588235, 0.784314)
 
 [node name="Label" parent="." index="2"]
 text = "Precision

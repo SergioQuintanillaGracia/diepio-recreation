@@ -3,14 +3,15 @@ extends CharacterBody2D
 signal shoot_bullet(pos, speed_vector, speed, damage, is_from_enemy)
 
 @export var player_name: String
-@export var speed: int = 500
 
 # Player upgradeable attributes:
 var bullet_damage: float
 var bullet_speed: float
 var reload_time: float
 var precision_angle: float
+var player_speed: int
 var health: float
+var regeneration: float
 
 var remaining_health: float
 var reload_time_left: float
@@ -32,7 +33,9 @@ func _ready():
 	bullet_speed = $UpgradesData.bullet_speed[0]
 	reload_time = $UpgradesData.reload_time[0]
 	precision_angle = $UpgradesData.precision_angle[0]
+	player_speed = $UpgradesData.player_speed[0]
 	health = $UpgradesData.health[0]
+	regeneration = $UpgradesData.regeneration[0]
 	remaining_health = health
 	reload_time_left = reload_time
 
@@ -43,7 +46,7 @@ func _process(delta):
 		
 		# Movement and rotation
 		var direction = Input.get_vector("left", "right", "up", "down")
-		velocity = direction * speed
+		velocity = direction * player_speed
 		
 		look_at(get_global_mouse_position())
 		
@@ -74,6 +77,17 @@ func _process(delta):
 		
 		if Input.is_action_just_pressed("autofire"):
 			is_autofire_enabled = false if is_autofire_enabled else true
+			
+		# Regenerate the health of the tank
+		if remaining_health < health:
+			var health_to_regenerate: float = regeneration * delta
+			
+			if remaining_health + health_to_regenerate < health:
+				remaining_health += health_to_regenerate
+				$LifeBar.set_value(remaining_health / health * 100)
+			else:
+				remaining_health = health
+				$LifeBar.set_value(100)
 
 
 func _on_area_2d_area_entered(area):
@@ -125,3 +139,18 @@ func _on_skill_upgrade_menu_upgrade_reload(current_upgrade_level):
 
 func _on_skill_upgrade_menu_upgrade_precision(current_upgrade_level):
 	precision_angle = $UpgradesData.precision_angle[current_upgrade_level]
+
+
+func _on_skill_upgrade_menu_upgrade_player_speed(current_upgrade_level):
+	player_speed = $UpgradesData.player_speed[current_upgrade_level]
+
+
+func _on_skill_upgrade_menu_upgrade_health(current_upgrade_level):
+	var prev_health: float = health
+	health = $UpgradesData.health[current_upgrade_level]
+	remaining_health += health - prev_health
+	$LifeBar.set_value(remaining_health / health * 100)
+
+
+func _on_skill_upgrade_menu_upgrade_regeneration(current_upgrade_level):
+	regeneration = $UpgradesData.regeneration[current_upgrade_level]

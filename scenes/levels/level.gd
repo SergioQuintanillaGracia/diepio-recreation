@@ -33,7 +33,7 @@ func _ready():
 	unzoom_limit_vector = Vector2(unzoom_limit, unzoom_limit)
 
 
-func _process(delta):	
+func _process(delta):
 	time_since_last_entity += delta
 	
 	var entity_count = $Entities.get_child_count()
@@ -65,10 +65,6 @@ func _on_tank_shoot_bullet(pos, speed_vector, speed, damage):
 	bullet.damage = damage
 	bullet.speed = speed
 	$Bullets.add_child(bullet)
-
-
-func _on_enemy_tank_shoot_bullet(pos, speed_vector, speed, damage):
-	enemy_shoot_bullet(pos, speed_vector, speed, damage)
 
 
 func enemy_shoot_bullet(pos, speed_vector, speed, damage):
@@ -106,3 +102,15 @@ func spawn_shape(shape_scene: PackedScene, pos: Vector2) -> void:
 	shape.global_position = pos
 	$Entities.add_child(shape)
 
+
+func _on_enemy_tank_shoot_bullet(pos, speed_vector, speed, damage):
+	enemy_shoot_bullet(pos, speed_vector, speed, damage)
+
+func _on_enemy_tank_2_shoot_bullet(pos, speed_vector, speed, damage):
+	enemy_shoot_bullet(pos, speed_vector, speed, damage)
+
+func _on_enemy_tank_3_shoot_bullet(pos, speed_vector, speed, damage):
+	enemy_shoot_bullet(pos, speed_vector, speed, damage)
+
+func _on_enemy_tank_4_shoot_bullet(pos, speed_vector, speed, damage):
+	enemy_shoot_bullet(pos, speed_vector, speed, damage)

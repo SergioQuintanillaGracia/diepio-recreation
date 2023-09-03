@@ -8,6 +8,8 @@ collision_layer = 4
 collision_mask = 4
 gravity_scale = 0.0
 script = ExtResource("1_orv1o")
+movement_speed = 3.0
+rotation_speed = 0.2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
