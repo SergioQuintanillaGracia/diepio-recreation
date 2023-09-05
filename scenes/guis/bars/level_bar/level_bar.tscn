@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://gs0duosw6tsu"]
+
+[ext_resource type="Texture2D" uid="uid://c1631065ch5rj" path="res://assets/images/bars/level_bar/bg.png" id="1_iqja5"]
+[ext_resource type="Script" path="res://scenes/guis/bars/level_bar/level_bar.gd" id="1_tlsif"]
+[ext_resource type="Texture2D" uid="uid://4ecqvj0impwd" path="res://assets/images/bars/level_bar/fill.png" id="2_4jbg0"]
+[ext_resource type="FontFile" uid="uid://cngmpj5475nb8" path="res://assets/fonts/Roboto-Bold.ttf" id="3_uf8o6"]
+
+[node name="LevelBar" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+script = ExtResource("1_tlsif")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = -364.0
+offset_top = -88.0
+offset_right = 364.0
+offset_bottom = -40.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_iqja5")
+texture_progress = ExtResource("2_4jbg0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -336.0
+offset_top = -81.0
+offset_right = 336.0
+offset_bottom = -45.0
+theme_override_fonts/font = ExtResource("3_uf8o6")
+theme_override_font_sizes/font_size = 28
+text = "No level information"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SmoothSetTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

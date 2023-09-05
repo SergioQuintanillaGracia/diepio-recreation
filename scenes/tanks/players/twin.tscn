@@ -5,23 +5,35 @@
 [ext_resource type="Texture2D" uid="uid://b4twd83b7nicf" path="res://assets/images/tanks/blue_player_body.png" id="3_16vj4"]
 
 [node name="Twin" instance=ExtResource("1_p1bsx")]
-scale = Vector2(0.4, 0.4)
+
+[node name="UpgradesData" parent="." index="0"]
+bullet_damage = [0.5, 1.0, 1.5, 2.0, 2.75, 4.0, 5.5, 7.0, 9.0]
+bullet_speed = [700.0, 800.0, 900.0, 1000.0, 1100.0, 1200.0, 1300.0, 1400.0, 1500.0]
+reload_time = [0.4, 0.375, 0.35, 0.325, 0.3, 0.275, 0.25, 0.225, 0.2]
+precision_angle = [10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0]
+player_speed = [400.0, 450.0, 500.0, 550.0, 600.0, 650.0, 700.0, 750.0, 800.0]
+health = [20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0]
+regeneration = [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 
 [node name="Marker2D" parent="BulletMarkers" index="0"]
-position = Vector2(-60, -225)
+position = Vector2(-21, -78)
 
 [node name="Marker2D2" type="Marker2D" parent="BulletMarkers" index="1"]
-position = Vector2(60, -225)
+position = Vector2(21, -78)
 
 [node name="GunNormal" type="Sprite2D" parent="." index="3"]
-position = Vector2(-60, -140)
-scale = Vector2(0.9, 0.9)
+position = Vector2(-21, -49)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_axv5m")
 
 [node name="GunNormal2" type="Sprite2D" parent="." index="4"]
-position = Vector2(60, -140)
-scale = Vector2(0.9, 0.9)
+position = Vector2(21, -49)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_axv5m")
 
 [node name="Body" parent="." index="5"]
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("3_16vj4")
+
+[node name="LifeBar" parent="." index="6"]
+position = Vector2(0, 64)

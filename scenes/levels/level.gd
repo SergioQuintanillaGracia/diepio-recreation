@@ -1,3 +1,8 @@
+# IMPORTANT NOTES:
+# 1) The player has to be named Player, and be a child of the level node, or things such as
+#    getting points from entities and zoom won't work.
+# 2) Entities must be inside a node called Entities, child of the level node.
+
 extends Node2D
 
 var player_bullet_normal_scene: PackedScene = preload("res://scenes/bullets/player_bullet_normal.tscn")
@@ -23,12 +28,12 @@ var pentagon_scene: PackedScene = preload("res://scenes/entities/pentagon.tscn")
 # they will get a skill point that they can use to upgrade one skill (that is not health related).
 # Ex: [5, 15] means you need 5 points to get to level 1, and 10 points more to get to level 2.
 # The array should be filled inside the inspector.
-@export var level_points: Array = [0, 0, 0, 0, 0, 0, 0, 0,
-								   0, 0, 0, 0, 0, 0, 0, 0,
-								   0, 0, 0, 0, 0, 0, 0, 0,
-								   0, 0, 0, 0, 0, 0, 0, 0,
-								   0, 0, 0, 0, 0, 0, 0, 0]
-								
+@export var level_points: Array = [20, 40, 60, 80, 100, 150, 200, 250,
+								   300, 350, 400, 500, 600, 700, 800, 900,
+								   1000, 1200, 1400, 1600, 1800, 2000, 2300, 2600,
+								   2900, 3200, 3500, 3800, 4200, 4600, 5000, 5400,
+								   5800, 6200, 6600, 7000, 7400, 7800, 8300, 9000]
+
 # The points each entity gives to the player when killed. Can depend on the level, that's why they
 # should be filled inside the inspector.
 @export var square_points: int
@@ -73,8 +78,7 @@ func _process(delta):
 		enemy.player_position = $Player.global_position
 
 
-func _on_tank_shoot_bullet(pos, speed_vector, speed, damage):
-	# Create a bullet, give it a position and a speed, and add it to the Bullets node
+func _on_player_shoot_bullet(pos, speed_vector, speed, damage):
 	var bullet = player_bullet_normal_scene.instantiate() as RigidBody2D
 	bullet.position = pos
 	bullet.linear_velocity = speed_vector
@@ -114,6 +118,7 @@ func spawn_random_shape() -> void:
 func spawn_shape(shape_scene: PackedScene, pos: Vector2, points: int) -> void:
 	var shape: RigidBody2D = shape_scene.instantiate() as RigidBody2D
 	shape.global_position = pos
+	shape.points = points
 	$Entities.add_child(shape)
 
 

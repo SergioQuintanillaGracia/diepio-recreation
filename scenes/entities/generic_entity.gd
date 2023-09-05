@@ -88,6 +88,10 @@ func handle_collision(area: Area2D):
 			should_die = true
 			$LifeBar.set_value(0)
 			
+			# Update the player points / level information:
+			get_parent().get_parent().get_node("Player").points += points
+			get_parent().get_parent().get_node("Player").update_level_information()
+			
 		var new_bullet_damage = bullet.damage - damage
 		area.get_parent().damage = new_bullet_damage
 			

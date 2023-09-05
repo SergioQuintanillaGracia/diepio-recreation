@@ -1,8 +1,17 @@
 extends CharacterBody2D
 
-signal shoot_bullet(pos, speed_vector, speed, damage, is_from_enemy)
+signal shoot_bullet(pos, speed_vector, speed, damage)
 
 @export var player_name: String
+
+# These variables should be changed from the entities and level scripts.
+# Note: The skill_points variable is inside skill_upgrade_menu, it should be used via its setter and getter.
+var points: int = 0
+var current_level: int = 0
+var previous_level_points: int = 0
+var next_level_points  # No set variable type, as it can be null when the player is at max level.
+
+var level_points_array: Array
 
 # Player upgradeable attributes:
 var bullet_damage: float
@@ -38,6 +47,10 @@ func _ready():
 	regeneration = $UpgradesData.regeneration[0]
 	remaining_health = health
 	reload_time_left = reload_time
+	
+	level_points_array = get_parent().level_points
+	next_level_points = level_points_array[0]
+	upgrade_to_level(0)
 
 
 func _process(delta):
@@ -92,6 +105,33 @@ func _process(delta):
 
 func _on_area_2d_area_entered(area):
 	handle_collision(area)
+
+
+func update_level_information():
+	# This function is run by an entity inside the level node, when it's killed by the player.
+	if current_level < len(level_points_array):
+		if points >= next_level_points:
+			var found_level: bool = false
+			# The level of the player should be increased.
+			for i in range(len(level_points_array)):
+				if level_points_array[i] > points:
+					found_level = true
+					upgrade_to_level(i)
+					break
+			
+			if not found_level:
+				upgrade_to_level(len(level_points_array))
+		
+		$CanvasLayer/skill_upgrade_menu.set_level_information(current_level, points, previous_level_points, next_level_points)
+
+
+func upgrade_to_level(new_level):
+	var old_level = current_level
+	current_level = new_level
+	previous_level_points = level_points_array[current_level - 1] if current_level != 0 else 0
+	next_level_points = level_points_array[current_level] if current_level < len(level_points_array) else null
+	$CanvasLayer/skill_upgrade_menu.set_skill_points($CanvasLayer/skill_upgrade_menu.get_skill_points() + current_level - old_level)
+	$CanvasLayer/skill_upgrade_menu.set_level_information(current_level, points, previous_level_points, next_level_points)
 
 
 func die():
