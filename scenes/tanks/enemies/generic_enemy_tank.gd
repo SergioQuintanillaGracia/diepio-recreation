@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal shoot_bullet(pos, speed_vector, speed, damage)
 
+@export var crystal_reward_amount: int
+
 @export var random_bullet_angle: float
 @export var health: float
 @export var speed: int
@@ -91,6 +93,7 @@ func die():
 	print("Enemy is dying (placeholder)")
 	is_dying = true
 	$SmoothDeathTimer.start()
+	get_parent().get_parent().get_node("Player").add_crystals(crystal_reward_amount)
 
 
 func handle_collision(area):

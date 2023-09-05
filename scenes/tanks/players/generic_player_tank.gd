@@ -48,6 +48,8 @@ func _ready():
 	remaining_health = health
 	reload_time_left = reload_time
 	
+	$CanvasLayer/skill_upgrade_menu.set_crystals(0)
+	
 	level_points_array = get_parent().level_points
 	next_level_points = level_points_array[0]
 	upgrade_to_level(0)
@@ -132,6 +134,10 @@ func upgrade_to_level(new_level):
 	next_level_points = level_points_array[current_level] if current_level < len(level_points_array) else null
 	$CanvasLayer/skill_upgrade_menu.set_skill_points($CanvasLayer/skill_upgrade_menu.get_skill_points() + current_level - old_level)
 	$CanvasLayer/skill_upgrade_menu.set_level_information(current_level, points, previous_level_points, next_level_points)
+
+
+func add_crystals(amount):
+	$CanvasLayer/skill_upgrade_menu.set_crystals($CanvasLayer/skill_upgrade_menu.get_crystals() + amount)
 
 
 func die():

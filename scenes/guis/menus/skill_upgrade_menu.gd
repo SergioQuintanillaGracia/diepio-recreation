@@ -10,6 +10,7 @@ signal upgrade_player_speed(current_upgrade_level: int)
 
 
 var skill_points = 0
+var crystals = 0
 
 
 func set_level_information(level, current_points, previous_level_points, points_to_next_level):
@@ -23,6 +24,15 @@ func get_skill_points():
 func set_skill_points(points):
 	skill_points = points
 	$SkillPoints/Label.text = "Available Skill Points: " + str(skill_points)
+
+
+func get_crystals():
+	return crystals
+
+
+func set_crystals(amount):
+	crystals = amount
+	$Crystals/Label.text = str(crystals)
 
 
 func _on_damage_upgrade_bar_upgrade_skill_button_pressed(progressbar):
@@ -46,11 +56,11 @@ func _on_player_speed_upgrade_bar_upgrade_skill_button_pressed(progressbar):
 
 
 func _on_health_upgrade_bar_upgrade_skill_button_pressed(progressbar):
-	upgrade_skill(progressbar, upgrade_health, $HealthUpgradeBar)
+	upgrade_skill_crystal(progressbar, upgrade_health, $HealthUpgradeBar)
 
 
 func _on_regeneration_upgrade_bar_upgrade_skill_button_pressed(progressbar):
-	upgrade_skill(progressbar, upgrade_regeneration, $RegenerationUpgradeBar)
+	upgrade_skill_crystal(progressbar, upgrade_regeneration, $RegenerationUpgradeBar)
 
 
 func add_progress_to_progressbar(progressbar: TextureProgressBar):
@@ -62,3 +72,10 @@ func upgrade_skill(progressbar: TextureProgressBar, signal_to_send: Signal, bar_
 		add_progress_to_progressbar(progressbar)
 		signal_to_send.emit(bar_node.get_current_upgrade_level())
 		set_skill_points(get_skill_points() - 1)
+
+
+func upgrade_skill_crystal(progressbar: TextureProgressBar, signal_to_send: Signal, bar_node: Control):
+	if crystals > 0 and progressbar.value < 100:
+		add_progress_to_progressbar(progressbar)
+		signal_to_send.emit(bar_node.get_current_upgrade_level())
+		set_crystals(get_crystals() - 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxxqcf7217w5c"]
+[gd_scene load_steps=13 format=3 uid="uid://dxxqcf7217w5c"]
 
 [ext_resource type="PackedScene" uid="uid://bgi1biyxae5se" path="res://scenes/guis/bars/skill_upgrade_bars/damage_upgrade_bar.tscn" id="1_aubha"]
 [ext_resource type="Script" path="res://scenes/guis/menus/skill_upgrade_menu.gd" id="1_kt8br"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dxw6qpdftspnw" path="res://scenes/guis/bars/skill_upgrade_bars/player_speed_upgrade_bar.tscn" id="8_ttwwv"]
 [ext_resource type="PackedScene" uid="uid://gs0duosw6tsu" path="res://scenes/guis/bars/level_bar/level_bar.tscn" id="9_4nj6s"]
 [ext_resource type="Texture2D" uid="uid://dunsv2k0t2jmx" path="res://assets/images/bars/upgrade_skill_bar/currencies/rounded_bg.png" id="10_iu58b"]
+[ext_resource type="Texture2D" uid="uid://xja26vfcds56" path="res://assets/images/bars/upgrade_skill_bar/currencies/crystal_icon.png" id="11_e82na"]
+[ext_resource type="Texture2D" uid="uid://bd802kafptm6u" path="res://assets/images/bars/upgrade_skill_bar/currencies/small_rounded_bg.png" id="11_vg8cc"]
 
 [node name="skill_upgrade_menu" type="Control"]
 layout_mode = 3
@@ -72,9 +74,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_bottom = 0.0
 offset_left = -352.0
-offset_top = 64.0
+offset_top = 56.0
 offset_right = -352.0
-offset_bottom = 64.0
+offset_bottom = 56.0
 grow_horizontal = 0
 grow_vertical = 1
 
@@ -84,9 +86,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_bottom = 0.0
 offset_left = -352.0
-offset_top = 112.0
+offset_top = 104.0
 offset_right = -352.0
-offset_bottom = 112.0
+offset_bottom = 104.0
 grow_horizontal = 0
 grow_vertical = 1
 
@@ -120,22 +122,27 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -40.0
-offset_bottom = 40.0
+offset_top = -8.0
+offset_bottom = 32.0
 grow_horizontal = 0
 
 [node name="LabelBg" type="Sprite2D" parent="Crystals"]
 position = Vector2(-172, 40)
-texture = ExtResource("10_iu58b")
+texture = ExtResource("11_vg8cc")
 
 [node name="CrystalIcon" type="Sprite2D" parent="Crystals"]
+position = Vector2(-137, 40.0001)
+rotation = 0.191986
+scale = Vector2(0.379729, 0.3723)
+texture = ExtResource("11_e82na")
 
 [node name="Label" type="Label" parent="Crystals"]
 layout_mode = 0
-offset_left = -288.0
+offset_left = -208.0
 offset_top = 27.0
-offset_right = -55.0
+offset_right = -136.0
 offset_bottom = 53.0
-text = "No crystals information"
+text = "No info."
 horizontal_alignment = 1
 vertical_alignment = 1
 

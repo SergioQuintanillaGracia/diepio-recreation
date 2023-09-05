@@ -2,6 +2,7 @@
 # 1) The player has to be named Player, and be a child of the level node, or things such as
 #    getting points from entities and zoom won't work.
 # 2) Entities must be inside a node called Entities, child of the level node.
+# 3) Enemies must be inside a node called Enemies, child of the level node.
 
 extends Node2D
 
@@ -28,8 +29,8 @@ var pentagon_scene: PackedScene = preload("res://scenes/entities/pentagon.tscn")
 # they will get a skill point that they can use to upgrade one skill (that is not health related).
 # Ex: [5, 15] means you need 5 points to get to level 1, and 10 points more to get to level 2.
 # The array should be filled inside the inspector.
-@export var level_points: Array = [20, 40, 60, 80, 100, 150, 200, 250,
-								   300, 350, 400, 500, 600, 700, 800, 900,
+@export var level_points: Array = [20, 50, 90, 150, 230, 330, 460, 620,
+								   810, 1010, 400, 500, 600, 700, 800, 900,
 								   1000, 1200, 1400, 1600, 1800, 2000, 2300, 2600,
 								   2900, 3200, 3500, 3800, 4200, 4600, 5000, 5400,
 								   5800, 6200, 6600, 7000, 7400, 7800, 8300, 9000]
@@ -102,8 +103,8 @@ func get_random_pos() -> Vector2:
 	var random_y: float = randf_range(spawn_limit_1.global_position[1], spawn_limit_2.global_position[1])
 	
 	return Vector2(random_x, random_y)
-	
-	
+
+
 func spawn_random_shape() -> void:
 	var random_value: float = randf_range(0, 1)
 	
