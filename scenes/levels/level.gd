@@ -29,11 +29,11 @@ var pentagon_scene: PackedScene = preload("res://scenes/entities/pentagon.tscn")
 # they will get a skill point that they can use to upgrade one skill (that is not health related).
 # Ex: [5, 15] means you need 5 points to get to level 1, and 10 points more to get to level 2.
 # The array should be filled inside the inspector.
-@export var level_points: Array = [20, 50, 90, 150, 230, 330, 460, 620,
-								   810, 1010, 400, 500, 600, 700, 800, 900,
-								   1000, 1200, 1400, 1600, 1800, 2000, 2300, 2600,
-								   2900, 3200, 3500, 3800, 4200, 4600, 5000, 5400,
-								   5800, 6200, 6600, 7000, 7400, 7800, 8300, 9000]
+@export var level_points: Array = [20, 50, 90, 150, 230, 330, 460, 620, 
+								   810, 1040, 1310, 1620, 1980, 2390, 2850, 3370, 
+								   3950, 4590, 5300, 6080, 6930, 7860, 8870, 9960, 
+								   11140, 12410, 13770, 15230, 16790, 18450, 20220, 22100, 
+								   24090, 26200, 28430, 30780, 33260, 35870, 38610, 41490]
 
 # The points each entity gives to the player when killed. Can depend on the level, that's why they
 # should be filled inside the inspector.
