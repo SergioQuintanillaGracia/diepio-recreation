@@ -6,9 +6,6 @@
 
 extends Node2D
 
-var player_bullet_normal_scene: PackedScene = preload("res://scenes/bullets/player_bullet_normal.tscn")
-var enemy_bullet_normal_scene: PackedScene = preload("res://scenes/bullets/enemy_bullet_normal.tscn")
-
 var square_scene: PackedScene = preload("res://scenes/entities/square.tscn")
 var triangle_scene: PackedScene = preload("res://scenes/entities/triangle.tscn")
 var pentagon_scene: PackedScene = preload("res://scenes/entities/pentagon.tscn")
@@ -79,25 +76,6 @@ func _process(delta):
 		enemy.player_position = $Player.global_position
 
 
-func _on_player_shoot_bullet(pos, speed_vector, speed, damage):
-	var bullet = player_bullet_normal_scene.instantiate() as RigidBody2D
-	bullet.position = pos
-	bullet.linear_velocity = speed_vector
-	bullet.damage = damage
-	bullet.speed = speed
-	$Bullets.add_child(bullet)
-
-
-func enemy_shoot_bullet(pos, speed_vector, speed, damage):
-	# Create a bullet, give it a position and a speed, and add it to the Bullets node
-	var bullet = enemy_bullet_normal_scene.instantiate() as RigidBody2D
-	bullet.position = pos
-	bullet.linear_velocity = speed_vector
-	bullet.damage = damage
-	bullet.speed = speed
-	$Bullets.add_child(bullet)
-
-
 func get_random_pos() -> Vector2:
 	var random_x: float = randf_range(spawn_limit_1.global_position[0], spawn_limit_2.global_position[0])
 	var random_y: float = randf_range(spawn_limit_1.global_position[1], spawn_limit_2.global_position[1])
@@ -121,16 +99,4 @@ func spawn_shape(shape_scene: PackedScene, pos: Vector2, points: int) -> void:
 	shape.global_position = pos
 	shape.points = points
 	$Entities.add_child(shape)
-
-
-func _on_enemy_tank_shoot_bullet(pos, speed_vector, speed, damage):
-	enemy_shoot_bullet(pos, speed_vector, speed, damage)
-
-func _on_enemy_tank_2_shoot_bullet(pos, speed_vector, speed, damage):
-	enemy_shoot_bullet(pos, speed_vector, speed, damage)
-
-func _on_enemy_tank_3_shoot_bullet(pos, speed_vector, speed, damage):
-	enemy_shoot_bullet(pos, speed_vector, speed, damage)
-
-func _on_enemy_tank_4_shoot_bullet(pos, speed_vector, speed, damage):
-	enemy_shoot_bullet(pos, speed_vector, speed, damage)
+	

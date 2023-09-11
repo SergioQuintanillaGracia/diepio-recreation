@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://54sujvi3p024"]
+
+[ext_resource type="Script" path="res://scenes/levels/generic_level.gd" id="1_m8b03"]
+
+[node name="GenericLevel" type="Node2D" node_paths=PackedStringArray("spawn_limit_1", "spawn_limit_2")]
+script = ExtResource("1_m8b03")
+entity_limit = 100
+square_chance = 0.75
+triangle_chance = 0.2
+pentagon_chance = 0.05
+spawn_limit_1 = NodePath("EntitySpawnLimits/Limit1")
+spawn_limit_2 = NodePath("EntitySpawnLimits/Limit2")
+square_points = 5
+triangle_points = 20
+pentagon_points = 100
+unzoom_limit = 0.1
+
+[node name="LevelSpecificsScript" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 4
+texture_repeat = 2
+position = Vector2(946, 547)
+region_enabled = true
+region_rect = Rect2(-10000, -10000, 10000, 10000)
+
+[node name="EntitySpawnLimits" type="Node2D" parent="."]
+
+[node name="Limit1" type="Marker2D" parent="EntitySpawnLimits"]
+position = Vector2(-1738, 1057)
+
+[node name="Limit2" type="Marker2D" parent="EntitySpawnLimits"]
+position = Vector2(1794, -1155)
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Bullets" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]

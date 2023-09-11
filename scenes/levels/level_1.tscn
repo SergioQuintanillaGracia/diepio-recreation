@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhsqvtdjglyhm"]
+
+[ext_resource type="PackedScene" uid="uid://54sujvi3p024" path="res://scenes/levels/generic_level.tscn" id="1_sn411"]
+[ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="2_mpemw"]
+[ext_resource type="Texture2D" uid="uid://cgvrkoxsmdpk2" path="res://assets/images/backgrounds/background_dark.png" id="3_1x5oj"]
+[ext_resource type="PackedScene" uid="uid://cpoijbeuykj5h" path="res://scenes/tanks/players/tank.tscn" id="3_dq7eb"]
+
+[node name="Level1" instance=ExtResource("1_sn411")]
+
+[node name="LevelSpecificsScript" parent="." index="0"]
+script = ExtResource("2_mpemw")
+
+[node name="Background" parent="." index="1"]
+texture = ExtResource("3_1x5oj")
+
+[node name="Player" parent="." index="6" instance=ExtResource("3_dq7eb")]
+
+[node name="Camera2D" type="Camera2D" parent="Player" index="7"]
+position_smoothing_enabled = true
+
+[connection signal="shoot_bullet" from="Player" to="LevelSpecificsScript" method="_on_player_shoot_bullet"]
