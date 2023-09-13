@@ -22,3 +22,7 @@ func enemy_shoot_bullet(pos, speed_vector, speed, damage):
 	bullet.damage = damage
 	bullet.speed = speed
 	$"../Bullets".add_child(bullet)
+
+
+func _on_enemy_tank_shoot_bullet(pos, speed_vector, speed, damage):
+	enemy_shoot_bullet(pos, speed_vector, speed, damage)
