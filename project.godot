@@ -87,6 +87,7 @@ autofire={
 2d_physics/layer_3="Entities"
 2d_physics/layer_4="Enemy Tank Bodies"
 2d_physics/layer_5="Enemy Bullets"
+2d_physics/layer_6="Walls"
 
 [rendering]
 
