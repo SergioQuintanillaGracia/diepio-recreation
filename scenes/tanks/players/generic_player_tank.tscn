@@ -9,6 +9,7 @@
 [node name="GenericPlayerTank" instance=ExtResource("1_oefks")]
 collision_mask = 16
 script = ExtResource("2_p167f")
+player_name = null
 
 [node name="UpgradesData" type="Node2D" parent="." index="0"]
 script = ExtResource("3_17jhd")
